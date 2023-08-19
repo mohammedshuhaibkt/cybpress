@@ -6,7 +6,9 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 class PdfParagraphApi {
-  static Future<File> generate(String name,String mobile,String address,String email,String age,String docname,String docemail,String docnum,String docspec) async {
+  static Future<File> generate(
+      String name,String mobile,String address,String email,String age,String docname,String docemail,String docnum,String docspec
+      ) async {
 
     var myTheme = ThemeData.withFont(
       base: Font.ttf(await rootBundle.load('assets/fonts/Quicksand-Regular.ttf')),
@@ -17,7 +19,8 @@ class PdfParagraphApi {
     var pdf = Document(
       theme: myTheme,
     );
-
+    final customFont =
+    Font.ttf(await rootBundle.load('assets/fonts/Quicksand-Regular.ttf'));
     // var data = await rootBundle.load("assets/open-sans.ttf");
 
     pdf.addPage(
@@ -27,8 +30,8 @@ class PdfParagraphApi {
           SizedBox(height: 0.5 * PdfPageFormat.cm),
           // Paragraph(
           //   text:
-          //   'This is my custom font that displays also characters such as €, Ł, ...',
-          //
+          //   'This is my custom font that displays also characters',
+          //   style: TextStyle(font: customFont, fontSize: 20),
           // ),
           // buildCustomHeadline(),
           // buildLink(),
