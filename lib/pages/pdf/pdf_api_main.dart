@@ -23,8 +23,11 @@ class PdfApi {
   }) async {
     final bytes = await pdf.save();
 
-    final dir = await getExternalStorageDirectory();
-    final file = File('${dir!.path}/$name');
+   final dir = await getExternalStorageDirectory();
+   //  final dir = await getApplicationDocumentsDirectory();
+   //  final file = File('${dir.path}\\$name');
+   final file = File('${dir!.path}/$name');
+    print(file);
 
     await file.writeAsBytes(bytes);
 

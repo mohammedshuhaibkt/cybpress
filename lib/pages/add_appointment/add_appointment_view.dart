@@ -1,8 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:open_file/open_file.dart';
 
 import '../pdf/api_pdf.dart';
 import '../pdf/pdf_api_main.dart';
+import '../pdf/pdf_binding.dart';
 
 
 
@@ -11,6 +15,7 @@ class addappointment extends StatelessWidget {
   final String docnum;
   final String docemail;
   final String docspec;
+  final String id;
 
   addappointment(
       {
@@ -18,9 +23,10 @@ class addappointment extends StatelessWidget {
         required this.docnum,
         required this.docemail,
         required this.docspec,
+        required this.id
 
       });
-
+  final pf = Get.put(pdfController());
 
   TextEditingController regcontroller = new TextEditingController();
   TextEditingController namecontroller = new TextEditingController();
@@ -245,7 +251,27 @@ class addappointment extends StatelessWidget {
                     async {
                       final pdfFile = await PdfParagraphApi.generate(namecontroller.text,mobilecontroller.text,agecontroller.text,emailcontroller.text,addresscontroller.text,docname,docemail,docnum,docspec);
 
-                      PdfApi.openFile(pdfFile);
+                      PdfApi.
+                      openFile(pdfFile);
+
+
+                      final Future<Map<String, dynamic>>
+                      successfulMessage =
+                      pf.addpdf(id,pdfFile
+                         );
+                      //   print( profilePicture.toString());
+
+                      // print(password);
+                      successfulMessage.then((response) {
+                        print("response :" + response.toString());
+
+                        if (response['status'] == true) {
+                          print("hhhhhhhh" + response.toString());
+                          // addpatet user = response['user'];
+
+                        }
+                      });
+                      print(pdfFile);
                     },
                     color: Color(0xFF03BF9C),
                     textColor: Colors.white,

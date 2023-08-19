@@ -216,7 +216,7 @@ class singledoctor extends StatelessWidget {
                                 .planneds[0].name.toString(),docnum:sim
                                 .planneds[0].mobile.toString(),docemail:sim
                                 .planneds[0].email.toString(),docspec:sim
-                                .planneds[0].spec.toString(),
+                                .planneds[0].spec.toString(),id:id
                             )),
                       );
                     },
